@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-08-28T21:08:04.709Z",
+    "end": "2025-08-28T21:08:05.335Z",
+    "duration": 626,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a9b4d7cf-736b-4bcd-bfc9-739e67856446",
+      "title": "",
+      "fullFile": "cypress/e2e/updateProfile_API.cy.js",
+      "file": "cypress/e2e/updateProfile_API.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e95fc148-5a3d-432c-85bd-65a5c781d011",
+          "title": "POST /customer/update/{customerId}",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should successfully update the profile",
+              "fullTitle": "POST /customer/update/{customerId} Should successfully update the profile",
+              "timedOut": null,
+              "duration": 592,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: `${apiBase}/customers/update/${customerId}`,\n  failOnStatusCode: false,\n  qs: {\n    customerId: customerId,\n    firstName: firstName,\n    lastName: lastName,\n    street: street,\n    city: city,\n    state: state,\n    zipCode: zipCode,\n    phoneNumber: phoneNumber,\n    ssn: ssn,\n    username: username,\n    password: password\n  },\n  headers: {\n    accept: 'application/json'\n  }\n}).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.contain(\"Successfully updated customer profile\");\n});",
+              "err": {
+                "message": "AssertionError: expected 500 to equal 200",
+                "estack": "AssertionError: expected 500 to equal 200\n    at Context.eval (webpack://20_gyorgyi_palatinus/./cypress/e2e/updateProfile_API.cy.js:42:39)\n    at getRet (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:120949:20)\n    at tryCatcher (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:120960:66)\n    at Context.then (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:121211:21)",
+                "diff": "- 500\n+ 200\n"
+              },
+              "uuid": "ef4813c0-4924-45a7-bdb0-bf543c06ec63",
+              "parentUUID": "e95fc148-5a3d-432c-85bd-65a5c781d011",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "ef4813c0-4924-45a7-bdb0-bf543c06ec63"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 592,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

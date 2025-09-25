@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-08-28T21:00:35.067Z",
+    "end": "2025-08-28T21:00:35.437Z",
+    "duration": 370,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3db4e6a5-1cfd-4c0e-8e55-5d447b3f2b86",
+      "title": "",
+      "fullFile": "cypress/e2e/requestLoan_API.cy.js",
+      "file": "cypress/e2e/requestLoan_API.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a9714125-b82d-4b37-ab97-2a9706944ea2",
+          "title": "POST /requestLoan",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should successfully request a loan",
+              "fullTitle": "POST /requestLoan Should successfully request a loan",
+              "timedOut": null,
+              "duration": 342,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: `${apiBase}/requestLoan?customerId=${customerId}&amount=${amount}&downPayment=${downPayment}&fromAccountId=${fomAccountId}`,\n  failOnStatusCode: false,\n  headers: {\n    accept: 'application/json'\n  }\n}).then(response => {\n  expect(response.status).to.eq(200);\n  cy.log(JSON.stringify(response.body));\n  expect(response.body).to.have.property('responseDate');\n  expect(response.body).to.have.property('loanProviderName');\n  expect(response.body).to.have.property('approved', true);\n  if (response.body.message) {\n    expect(response.body.message).to.be.a('string');\n  } else {\n    cy.log('Message property is not returned in this response');\n  }\n  expect(response.body).to.have.property('accountId').that.is.a('number');\n});",
+              "err": {},
+              "uuid": "119ff9e0-f313-4005-ad5a-e7d47f238e38",
+              "parentUUID": "a9714125-b82d-4b37-ab97-2a9706944ea2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "119ff9e0-f313-4005-ad5a-e7d47f238e38"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 342,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-08-28T20:47:27.606Z",
+    "end": "2025-08-28T20:47:28.134Z",
+    "duration": 528,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e6351571-92ee-4f53-9c40-27b7c2cc97fa",
+      "title": "",
+      "fullFile": "cypress/e2e/overdraft2_API.cy.js",
+      "file": "cypress/e2e/overdraft2_API.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dd01e513-69d8-4844-86a7-c3efeac11bd5",
+          "title": "POST /transfer",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should transfer funds between accounts",
+              "fullTitle": "POST /transfer Should transfer funds between accounts",
+              "timedOut": null,
+              "duration": 491,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'POST',\n  url: `${apiBase}/transfer?fromAccountId=${fromAccountId}&toAccountId=${toAccountId}&amount=${amount}`,\n  failOnStatusCode: false,\n  // Prevent Cypress from failing the test on non-2xx status codes\n  headers: {\n    accept: 'application/json'\n  }\n}).then(response => {\n  //400 Bad Request (fromAccountId és toAccountId are same) or 422 Unprocessable Entity(the data is invalid)\n  expect(response.status).to.be.oneOf([400, 422]);\n  expect(response.body).to.contain('Could not find account number ' + fromAccountId + ' and/or ' + toAccountId);\n});",
+              "err": {
+                "message": "AssertionError: expected 200 to be one of [ 400, 422 ]",
+                "estack": "AssertionError: expected 200 to be one of [ 400, 422 ]\n    at Context.eval (webpack://20_gyorgyi_palatinus/./cypress/e2e/overdraft2_API.cy.js:23:42)\n    at getRet (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:120949:20)\n    at tryCatcher (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:120960:66)\n    at Context.then (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:121211:21)",
+                "diff": "- 200\n+ [ 400, 422 ]\n"
+              },
+              "uuid": "c3ab6e11-b949-46c0-ad27-4e0b269eb54b",
+              "parentUUID": "dd01e513-69d8-4844-86a7-c3efeac11bd5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "c3ab6e11-b949-46c0-ad27-4e0b269eb54b"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 491,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

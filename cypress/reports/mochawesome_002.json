@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-08-28T20:47:25.240Z",
+    "end": "2025-08-28T20:47:25.771Z",
+    "duration": 531,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "855ed440-5361-4ca3-b2fe-f825246d9a2b",
+      "title": "",
+      "fullFile": "cypress/e2e/overdraft1_API.cy.js",
+      "file": "cypress/e2e/overdraft1_API.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "64137fc6-9d51-4c34-84ac-c48f1903e220",
+          "title": "GET /accounts/{accountId}",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should return the new balance of the fromAccountId",
+              "fullTitle": "GET /accounts/{accountId} Should return the new balance of the fromAccountId",
+              "timedOut": null,
+              "duration": 490,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: apiBase + '/accounts/' + fromAccountId,\n  headers: {\n    accept: 'application/json'\n  }\n}).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.id).to.be.eq(fromAccountId);\n  expect(response.body.balance).to.be.greaterThan(-1);\n  cy.log('Balance of the from account: ' + response.body.balance);\n});",
+              "err": {
+                "message": "CypressError: `cy.request()` failed on:\n\nhttps://parabank.parasoft.com/parabank/services/bank/accounts/undefined\n\nThe response we received from your web server was:\n\n  > 404: Not Found\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: GET\nURL: https://parabank.parasoft.com/parabank/services/bank/accounts/undefined\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"accept\": \"application/json\",\n  \"user-agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/14.5.3 Chrome/130.0.6723.137 Electron/33.2.1 Safari/537.36\",\n  \"accept-encoding\": \"gzip, deflate\"\n}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 404 - Not Found\nHeaders: {\n  \"date\": \"Thu, 28 Aug 2025 20:47:25 GMT\",\n  \"content-length\": \"0\",\n  \"connection\": \"keep-alive\",\n  \"server\": \"cloudflare\",\n  \"cf-cache-status\": \"DYNAMIC\",\n  \"x-content-type-options\": \"nosniff\",\n  \"cf-ray\": \"9766a9e78f17b654-VIE\"\n}\nBody: \n\n\nhttps://on.cypress.io/request",
+                "estack": "CypressError: `cy.request()` failed on:\n\nhttps://parabank.parasoft.com/parabank/services/bank/accounts/undefined\n\nThe response we received from your web server was:\n\n  > 404: Not Found\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: GET\nURL: https://parabank.parasoft.com/parabank/services/bank/accounts/undefined\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"accept\": \"application/json\",\n  \"user-agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/14.5.3 Chrome/130.0.6723.137 Electron/33.2.1 Safari/537.36\",\n  \"accept-encoding\": \"gzip, deflate\"\n}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 404 - Not Found\nHeaders: {\n  \"date\": \"Thu, 28 Aug 2025 20:47:25 GMT\",\n  \"content-length\": \"0\",\n  \"connection\": \"keep-alive\",\n  \"server\": \"cloudflare\",\n  \"cf-cache-status\": \"DYNAMIC\",\n  \"x-content-type-options\": \"nosniff\",\n  \"cf-ray\": \"9766a9e78f17b654-VIE\"\n}\nBody: \n\n\nhttps://on.cypress.io/request\n    at <unknown> (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:136330:72)\n    at tryCatcher (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1671:18)\n    at _drainQueueStep (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:2377:12)\n    at _drainQueue (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:2370:9)\n    at Async._drainQueues (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:2386:5)\n    at Async.drainQueues (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:2256:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://20_gyorgyi_palatinus/./cypress/e2e/overdraft1_API.cy.js:10:11)",
+                "diff": null
+              },
+              "uuid": "b7fdcc5e-a6a2-4934-a73b-6b870ccd8ece",
+              "parentUUID": "64137fc6-9d51-4c34-84ac-c48f1903e220",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "b7fdcc5e-a6a2-4934-a73b-6b870ccd8ece"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 490,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

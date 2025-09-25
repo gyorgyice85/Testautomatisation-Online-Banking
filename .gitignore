@@ -1,0 +1,5 @@
+# Node modules
+node_modules/
+
+# Cypress config (érzékeny adatok)
+cypress.env.json

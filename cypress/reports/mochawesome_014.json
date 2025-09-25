@@ -1,0 +1,190 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 3,
+    "pending": 0,
+    "failures": 2,
+    "start": "2025-08-28T21:07:32.301Z",
+    "end": "2025-08-28T21:07:51.148Z",
+    "duration": 18847,
+    "testsRegistered": 5,
+    "passPercent": 60,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d916bcdd-e405-49fb-a7a2-6c04260dd1b9",
+      "title": "",
+      "fullFile": "cypress/e2e/Account.cy.js",
+      "file": "cypress/e2e/Account.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3528f750-723c-40b0-8d31-7cbe657a2c3a",
+          "title": "Open a new account",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open a new account - test",
+              "fullTitle": "Open a new account Open a new account - test",
+              "timedOut": null,
+              "duration": 5305,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#leftPanel').should('be.visible');\ncy.get('#leftPanel').contains('a', 'Open New Account').click();\ncy.get('#openAccountForm').should('be.visible');\ncy.get('#type').select('CHECKING').should('have.value', '0');\ncy.get('#fromAccountId option').first().then(option => {\n  cy.get('#fromAccountId').select(option.val());\n});\ncy.get('input[value = \"Open New Account\"]').click();\ncy.get('#openAccountResult').should('be.visible');\ncy.get('#openAccountResult').contains('Congratulations, your account is now open.');\ncy.get('#openAccountResult').contains('Your new account number:');\ncy.get('#newAccountId').should('be.visible').invoke('text').should('not.be.empty').then(text => {\n  newAccountId = text.trim();\n  cy.log('New account ID: ' + newAccountId);\n  cy.contains('Accounts Overview').should('be.visible').click();\n  cy.get('#accountTable').should('be.visible');\n  cy.get('#accountTable tr td:first-child a').contains(newAccountId).should('exist').then($el => {\n    balance = $el.parent().next().text().trim();\n    cy.log('Balance of the new account: ' + balance);\n    expect(balance).to.eq(startingBalance.toString());\n  });\n});",
+              "err": {
+                "message": "AssertionError: expected '$0.00' to equal '3000'",
+                "estack": "AssertionError: expected '$0.00' to equal '3000'\n    at Context.eval (webpack://20_gyorgyi_palatinus/./cypress/e2e/Account.cy.js:64:35)\n    at getRet (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:120949:20)\n    at tryCatcher (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:120960:66)\n    at Context.then (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:121211:21)",
+                "diff": "- '$0.00'\n+ '3000'\n"
+              },
+              "uuid": "7d96919f-42fb-4311-8259-e685138436e9",
+              "parentUUID": "3528f750-723c-40b0-8d31-7cbe657a2c3a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Open a Savings account - test",
+              "fullTitle": "Open a new account Open a Savings account - test",
+              "timedOut": null,
+              "duration": 3209,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#leftPanel').should('be.visible');\ncy.get('#leftPanel').contains('a', 'Open New Account').click();\ncy.get('#openAccountForm').should('be.visible');\ncy.get('#type').select('SAVINGS').should('have.value', '1');\ncy.get('#fromAccountId option').first().then(option => {\n  cy.get('#fromAccountId').select(option.val());\n});\ncy.get('input[value = \"Open New Account\"]').click();\ncy.get('#openAccountResult').should('be.visible');\ncy.get('#openAccountResult').contains('Your new account number:');\ncy.get('#newAccountId').should('be.visible').click();\ncy.get('#accountDetails').should('be.visible');",
+              "err": {},
+              "uuid": "7d414337-8167-481d-bba8-3d1b638d6470",
+              "parentUUID": "3528f750-723c-40b0-8d31-7cbe657a2c3a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Overdraft - test",
+              "fullTitle": "Open a new account Overdraft - test",
+              "timedOut": null,
+              "duration": 4595,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#leftPanel').contains('a', 'Transfer Funds').click();\ncy.get('#transferApp').should('be.visible');\ncy.get('#amount').type(amount);\ncy.get('#fromAccountId option').then(options => {\n  const randomOption = options[Math.floor(Math.random() * options.length)];\n  cy.get('#fromAccountId').select(randomOption.value);\n  fromAccountId = randomOption.value;\n  cy.get('#fromAccountId').select(fromAccountId.toString()).should('have.value', fromAccountId.toString());\n  cy.log('From account ID: ' + fromAccountId);\n  cy.get('#toAccountId option').then(options => {\n    const randomOption = options[Math.floor(Math.random() * options.length)];\n    cy.get('#toAccountId').select(randomOption.value);\n    toAccountId = randomOption.value;\n    cy.get('#toAccountId').select(toAccountId.toString()).should('have.value', toAccountId.toString());\n    cy.log('To account ID: ' + toAccountId);\n    if (fromAccountId === toAccountId) {\n      cy.get('.error-mesage').should('be.visible').and('contain', 'From and To account cannot be the same.');\n    } else {\n      cy.get('input[value = \"Transfer\"]').click();\n      cy.get('#showResult').should('be.visible');\n    }\n    expect(fromAccountId).to.not.eq(toAccountId);\n    cy.get('#amountResult').should('contain', amount.toString());\n    cy.get('#fromAccountIdResult').should('contain', fromAccountId.toString());\n    cy.get('#toAccountIdResult').should('contain', toAccountId.toString());\n  });\n  cy.contains('Accounts Overview').should('be.visible').click();\n  cy.get('#accountTable tr td:first-child a').contains(fromAccountId).should('exist').then($el => {\n    let newBalance = $el.parent().next().text().trim();\n    newBalance = Number(newBalance.replace(/[^0-9.-]+/g, \"\"));\n    expect(newBalance).to.be.greaterThan(-1);\n    cy.log('New balance of the ' + fromAccountId + ': ' + newBalance);\n  });\n});",
+              "err": {
+                "message": "AssertionError: expected -500 to be above -1",
+                "estack": "AssertionError: expected -500 to be above -1\n    at Context.eval (webpack://20_gyorgyi_palatinus/./cypress/e2e/Account.cy.js:135:41)\n    at getRet (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:120949:20)\n    at tryCatcher (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:120960:66)\n    at Context.then (https://parabank.parasoft.com/__cypress/runner/cypress_runner.js:121211:21)",
+                "diff": "- -500\n+ -1\n"
+              },
+              "uuid": "de28e1b0-0a72-46e7-9d84-3b377626737d",
+              "parentUUID": "3528f750-723c-40b0-8d31-7cbe657a2c3a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Loan - test",
+              "fullTitle": "Open a new account Loan - test",
+              "timedOut": null,
+              "duration": 3124,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#leftPanel').should('be.visible');\ncy.get('#leftPanel').contains('a', 'Request Loan').click();\ncy.get('#requestLoanForm').should('be.visible');\ncy.get('#amount').type(loanAmount);\nexpect(loanAmount).to.exist;\nexpect(loanAmount).to.be.a('number');\nexpect(loanAmount).to.be.greaterThan(0);\nif (downPayment !== ' ' && downPayment !== null && downPayment !== undefined) {\n  cy.get('#downPayment').type(downPayment);\n}\ncy.get('#fromAccountId option').first().then(option => {\n  cy.get('#fromAccountId').select(option.val());\n});\ncy.get('input[value = \"Apply Now\"]').click();\ncy.get('#requestLoanResult').should('be.visible');",
+              "err": {},
+              "uuid": "31ffff14-0a4e-4405-b054-b297e386832c",
+              "parentUUID": "3528f750-723c-40b0-8d31-7cbe657a2c3a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should return the updated Infos ",
+              "fullTitle": "Open a new account Should return the updated Infos ",
+              "timedOut": null,
+              "duration": 2398,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#leftPanel').contains('a', 'Update Contact Info').click();\ncy.get('#customer\\\\.firstName').should('have.value', Cypress.env('firstName'));\ncy.get('#customer\\\\.lastName').should('have.value', Cypress.env('lastName'));\ncy.get('#customer\\\\.address\\\\.street').should('have.value', Cypress.env('street'));\ncy.get('#customer\\\\.address\\\\.city').should('have.value', Cypress.env('city'));\ncy.get('#customer\\\\.address\\\\.state').should('have.value', Cypress.env('state'));\ncy.get('#customer\\\\.address\\\\.zipCode').should('have.value', Cypress.env('zipCode'));\ncy.get('#customer\\\\.phoneNumber').should('have.value', Cypress.env('phoneNumber'));",
+              "err": {},
+              "uuid": "108982b0-493b-4f4a-97dc-25d779d7b5e5",
+              "parentUUID": "3528f750-723c-40b0-8d31-7cbe657a2c3a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7d414337-8167-481d-bba8-3d1b638d6470",
+            "31ffff14-0a4e-4405-b054-b297e386832c",
+            "108982b0-493b-4f4a-97dc-25d779d7b5e5"
+          ],
+          "failures": [
+            "7d96919f-42fb-4311-8259-e685138436e9",
+            "de28e1b0-0a72-46e7-9d84-3b377626737d"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 18631,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
